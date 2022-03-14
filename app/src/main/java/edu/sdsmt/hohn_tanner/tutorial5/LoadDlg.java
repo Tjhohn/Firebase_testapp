@@ -41,7 +41,7 @@ public class LoadDlg extends DialogFragment {
 
         RecyclerView list = view.findViewById(R.id.listHattings);
         list.setLayoutManager(new LinearLayoutManager(getContext()));
-        final Cloud.CatalogAdapter adapter = new Cloud.CatalogAdapter();
+        final Cloud.CatalogAdapter adapter = new Cloud.CatalogAdapter(list);
         list.setAdapter(adapter);
 
         return dlg;

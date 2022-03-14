@@ -40,6 +40,13 @@ public class Cloud {
     public static class CatalogAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         /**
+         * Constructor
+         */
+        public CatalogAdapter(final View view) {
+            items = getCatalog(view);
+        }
+
+        /**
          * The items we display in the list box. Initially this is
          * null until we get items from the server.
          */
@@ -51,6 +58,32 @@ public class Cloud {
 
         public long getItemId(int position) {
             return position;
+        }
+
+        public ArrayList getCatalog(final View view) {
+            final ArrayList<Item> newItems = new ArrayList<>();
+
+            Item a = new Item();
+            a.name = "first new item";
+            a.id = "id";
+            newItems.add(a);
+
+            Item b = new Item();
+            b.name = "second new item";
+            b.id = "id";
+            newItems.add(b);
+
+            view.post(new Runnable() {
+
+                @Override
+                public void run() {
+                    // Tell the adapter the data set has been changed
+                    notifyItemRangeChanged(0, newItems.size());
+                }
+
+            });
+
+            return newItems;
         }
 
         @NonNull
