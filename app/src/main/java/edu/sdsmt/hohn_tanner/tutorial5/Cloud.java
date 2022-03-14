@@ -1,12 +1,20 @@
 package edu.sdsmt.hohn_tanner.tutorial5;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -63,24 +71,44 @@ public class Cloud {
         public ArrayList getCatalog(final View view) {
             final ArrayList<Item> newItems = new ArrayList<>();
 
-            Item a = new Item();
-            a.name = "first new item";
-            a.id = "id";
-            newItems.add(a);
+            //connect to the database (hattings child)
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            database.goOnline();
+            DatabaseReference myRef = database.getReference("hattings");
 
-            Item b = new Item();
-            b.name = "second new item";
-            b.id = "id";
-            newItems.add(b);
-
-            view.post(new Runnable() {
-
+            // Read from the database
+            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void run() {
-                    // Tell the adapter the data set has been changed
-                    notifyItemRangeChanged(0, newItems.size());
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    //look at each child
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        Log.d("output", "Value is: " + child.toString());
+
+                        Item tempItem = new Item();
+                        tempItem.name = child.child("name").getValue().toString();
+                        tempItem.id = child.getKey();
+                        newItems.add(tempItem);
+                    }
+
+                    view.post(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            // Tell the adapter the data set has been changed
+                            notifyItemRangeChanged(0, newItems.size());
+                        }
+                    });
                 }
 
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w("output", "Failed to read value.", error.toException());
+
+                    // Error condition!
+                    view.post(() -> Toast.makeText(view.getContext(), R.string.catalog_fail, Toast.LENGTH_SHORT).show());;
+                }
             });
 
             return newItems;
