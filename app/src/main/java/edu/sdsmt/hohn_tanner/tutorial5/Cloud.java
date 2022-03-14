@@ -60,6 +60,24 @@ public class Cloud {
     }
 
     /**
+     * Save a hatting to the cloud.
+     * @param name name to save under
+     * @param view view we are getting the data from
+     */
+    public void saveToCloud(String name, HatterView view) {
+        name = name.trim();
+        if(name.length() == 0) {
+            /*
+             *  If we fail to save, display a
+             */
+            // Please fill this in...
+            // Error condition!
+            view.post(() -> Toast.makeText(view.getContext(), R.string.fail, Toast.LENGTH_SHORT).show());;
+        }
+
+    }
+
+    /**
      * An class that holds a line's contents for later updating
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {

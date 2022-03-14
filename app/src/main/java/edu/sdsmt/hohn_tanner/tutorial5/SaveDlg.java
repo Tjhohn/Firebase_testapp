@@ -20,7 +20,13 @@ public class SaveDlg extends DialogFragment {
      * @param name name to save it under
      */
     private void save(final String name) {
-
+        if (!(getActivity() instanceof HatterActivity)) {
+            return;
+        }
+        HatterActivity activity = (HatterActivity) getActivity();
+        HatterView view = activity.findViewById(R.id.hatterView);
+        Cloud cloud = new Cloud();
+        cloud.saveToCloud(name, view);
     }
 
     private AlertDialog dlg;

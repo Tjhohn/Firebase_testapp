@@ -26,6 +26,7 @@
     <string name="loading_fail">Failed to load Hatting</string>
     <string name="name">Name</string>
     <string name="save">Save</string>
+    <string name="fail">Operation Failed</string>
 
     <string-array name="hats_spinner">
 
