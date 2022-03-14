@@ -15,6 +15,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URL;
@@ -212,6 +214,28 @@ public class HatterView extends View {
 
         customPaint = new Paint();
         customPaint.setColorFilter(new LightingColorFilter(params.color, 0));
+    }
+
+    public void loadJSON(DataSnapshot snapshot) {
+        /*
+         * load in parameters
+         */
+        params.imageUri = snapshot.child("uri").getValue().toString();
+        params.hatX = Float.parseFloat(snapshot.child("x").getValue().toString());
+        params.hatY = Float.parseFloat(snapshot.child("y").getValue().toString());
+        params.hatAngle = Float.parseFloat(snapshot.child("angle").getValue().toString());
+        params.hatScale = Float.parseFloat(snapshot.child("scale").getValue().toString());
+        params.color = Integer.parseInt(snapshot.child("color").getValue().toString());
+        params.hat = Integer.parseInt(snapshot.child("type").getValue().toString());
+        params.drawthefeather = (boolean) (snapshot.child("feather").getValue());
+
+        // Ensure the options are all set
+        setColor(params.color);
+        setImageUri(Uri.parse(params.imageUri));
+        setHat(params.hat);
+        setFeather(params.drawthefeather);
+
+
     }
 
     /**

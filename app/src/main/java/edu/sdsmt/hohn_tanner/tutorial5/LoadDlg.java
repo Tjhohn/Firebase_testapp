@@ -16,6 +16,9 @@ public class LoadDlg extends DialogFragment implements CatalogCallback{
 
     @Override
     public void callback(Cloud.Item catItem) {
+        LoadingDlg loadDlg = new LoadingDlg();
+        loadDlg.setCatId(catItem.id);
+        loadDlg.show(getParentFragmentManager(), "loading");
         this.dismiss();
     }
 
@@ -40,6 +43,7 @@ public class LoadDlg extends DialogFragment implements CatalogCallback{
         // Add a cancel button
         builder.setNegativeButton(android.R.string.cancel, (dialog, id) -> {
             // Cancel just closes the dialog box
+            dialog.dismiss();
         });
 
         AlertDialog dlg = builder.create();

@@ -22,6 +22,8 @@
     <string name="load_fm_title">Load from cloud</string>
     <string name="catalog_fail">Failed to load catalog of Hattings</string>
     <string name="dummy">Dummy</string>
+    <string name="loading">Loading</string>
+    <string name="loading_fail">Failed to load Hatting</string>
 
     <string-array name="hats_spinner">
 

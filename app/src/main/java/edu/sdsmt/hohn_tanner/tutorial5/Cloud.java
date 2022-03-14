@@ -1,6 +1,7 @@
 package edu.sdsmt.hohn_tanner.tutorial5;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,43 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class Cloud {
+
+    /**
+     * method to load a specific hatting
+     * @param view The view we are loading the hatting into
+     * @param catId the id of the hatting
+     * @param dlg the dialog box showing the loading state
+     */
+    public void loadFromCloud(final HatterView view, String catId, final Dialog dlg)
+    {
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("hattings").child(catId);
+
+        // Read from the database
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                view.loadJSON(dataSnapshot);
+
+                dlg.dismiss();
+                if (view.getContext() instanceof HatterActivity)
+                    ((HatterActivity) view.getContext()).updateUI();
+                view.invalidate();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Error condition!
+                view.post(() -> {
+                    Toast.makeText(view.getContext(), R.string.loading_fail, Toast.LENGTH_SHORT).show();
+                    dlg.dismiss();
+                });
+
+            }
+        });
+    }
 
     /**
      * An class that holds a line's contents for later updating
