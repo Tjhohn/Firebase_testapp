@@ -12,7 +12,12 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class LoadDlg extends DialogFragment {
+public class LoadDlg extends DialogFragment implements CatalogCallback{
+
+    @Override
+    public void callback(Cloud.Item catItem) {
+        this.dismiss();
+    }
 
     /**
      * Create the dialog box
@@ -41,7 +46,7 @@ public class LoadDlg extends DialogFragment {
 
         RecyclerView list = view.findViewById(R.id.listHattings);
         list.setLayoutManager(new LinearLayoutManager(getContext()));
-        final Cloud.CatalogAdapter adapter = new Cloud.CatalogAdapter(list);
+        final Cloud.CatalogAdapter adapter = new Cloud.CatalogAdapter(list, this::callback);
         list.setAdapter(adapter);
 
         return dlg;

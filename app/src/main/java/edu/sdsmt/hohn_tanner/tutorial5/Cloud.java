@@ -1,5 +1,6 @@
 package edu.sdsmt.hohn_tanner.tutorial5;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,13 +48,15 @@ public class Cloud {
      */
     public static class CatalogAdapter extends RecyclerView.Adapter<ViewHolder> {
 
+        public CatalogCallback clickEvent;
+
         /**
          * Constructor
          */
-        public CatalogAdapter(final View view) {
+        public CatalogAdapter(final View view,  CatalogCallback click) {
             items = getCatalog(view);
+            clickEvent = click;
         }
-
         /**
          * The items we display in the list box. Initially this is
          * null until we get items from the server.
@@ -122,7 +125,20 @@ public class Cloud {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+            holder.view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    // Get the item of the one we want to load
+                    Item catItem = getItem(position);
+
+                    // let the client class do its job
+                    clickEvent.callback(catItem);
+                }
+
+            });
+
             TextView tv = holder.view.findViewById(R.id.textItem);
             String text =  items.get(position).name;
             tv.setText( text );
