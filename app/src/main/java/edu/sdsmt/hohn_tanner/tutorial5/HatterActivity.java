@@ -280,6 +280,11 @@ public class HatterActivity extends AppCompatActivity {
             case R.id.menu_reset:
                 hatterView.reset();
                 return true;
+
+            case R.id.menu_load:
+                LoadDlg dlg2 = new LoadDlg();
+                dlg2.show(getSupportFragmentManager(), "load");
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

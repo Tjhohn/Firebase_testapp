@@ -16,6 +16,11 @@
     <string name="url_dlg_heading">Select Picture</string>
     <string name="url_prompt">URL:</string>
     <string name="hat_select">Hat type selection</string>
+    <string name="menu_save">Save to cloud&#8230;</string>
+    <string name="menu_load">Load from cloud&#8230;</string>
+    <string name="menu_delete">Delete from cloud&#8230;</string>
+    <string name="load_fm_title">Load from cloud</string>
+    <string name="dummy">Dummy</string>
 
     <string-array name="hats_spinner">
 
