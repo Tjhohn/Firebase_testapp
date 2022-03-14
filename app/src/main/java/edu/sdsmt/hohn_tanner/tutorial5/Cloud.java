@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class Cloud {
 
     /**
@@ -24,10 +26,32 @@ public class Cloud {
     }
 
     /**
+     * Nested class to store one catalog row underlying data
+     */
+    public static class Item {
+        public String name = "";
+        public String id = "";
+    }
+
+    /**
      * An adapter so that list boxes can display a list of filenames from
      * the cloud server.
      */
     public static class CatalogAdapter extends RecyclerView.Adapter<ViewHolder> {
+
+        /**
+         * The items we display in the list box. Initially this is
+         * null until we get items from the server.
+         */
+        private ArrayList<Item> items = new ArrayList<>();
+
+        public Item getItem(int position) {
+            return items.get(position);
+        }
+
+        public long getItemId(int position) {
+            return position;
+        }
 
         @NonNull
         @Override
@@ -39,13 +63,15 @@ public class Cloud {
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             TextView tv = holder.view.findViewById(R.id.textItem);
-            String text = "Item " + position;
+            String text =  items.get(position).name;
             tv.setText( text );
         }
 
         @Override
         public int getItemCount() {
-            return 5;
+            return items.size();
         }
+
+
     }
 }
