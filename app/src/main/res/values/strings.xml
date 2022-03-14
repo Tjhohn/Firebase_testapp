@@ -24,6 +24,8 @@
     <string name="dummy">Dummy</string>
     <string name="loading">Loading</string>
     <string name="loading_fail">Failed to load Hatting</string>
+    <string name="name">Name</string>
+    <string name="save">Save</string>
 
     <string-array name="hats_spinner">
 

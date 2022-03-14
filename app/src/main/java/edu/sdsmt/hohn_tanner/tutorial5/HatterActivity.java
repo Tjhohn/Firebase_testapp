@@ -68,6 +68,8 @@ public class HatterActivity extends AppCompatActivity {
      */
     private Spinner spinner;
 
+    private SaveDlg saveDlg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -284,6 +286,11 @@ public class HatterActivity extends AppCompatActivity {
             case R.id.menu_load:
                 LoadDlg dlg2 = new LoadDlg();
                 dlg2.show(getSupportFragmentManager(), "load");
+                return true;
+
+            case R.id.menu_save:
+                saveDlg = new SaveDlg();
+                saveDlg.show(getSupportFragmentManager(), "save");
                 return true;
         }
         return super.onOptionsItemSelected(item);
