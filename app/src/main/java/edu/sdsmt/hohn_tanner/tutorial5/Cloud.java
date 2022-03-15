@@ -74,6 +74,25 @@ public class Cloud {
             // Error condition!
             view.post(() -> Toast.makeText(view.getContext(), R.string.fail, Toast.LENGTH_SHORT).show());;
         }
+        else{
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference hattingsList = database.getReference("hattings");
+            String key =hattingsList .push().getKey();
+            hattingsList = hattingsList.child(key);
+            hattingsList.child("name").setValue(name);
+
+            view.saveJSON(hattingsList);
+            hattingsList.child("name").setValue(name, new DatabaseReference.CompletionListener() {
+                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                    if(databaseError != null) {
+                        // Error condition!
+                        /*
+                         * make a toast
+                         */
+
+                    }
+                }});
+        }
 
     }
 

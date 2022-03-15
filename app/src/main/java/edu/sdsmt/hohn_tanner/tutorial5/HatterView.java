@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
 
 import java.io.InputStream;
 import java.io.Serializable;
@@ -235,6 +236,19 @@ public class HatterView extends View {
         setHat(params.hat);
         setFeather(params.drawthefeather);
 
+
+    }
+
+    public void saveJSON(DatabaseReference snapshot) {
+
+        snapshot.child("uri").setValue(params.imageUri);
+        snapshot.child("x").setValue(params.hatX);
+        snapshot.child("y").setValue(params.hatY);
+        snapshot.child("angle").setValue(params.hatAngle);
+        snapshot.child("scale").setValue(params.hatScale);
+        snapshot.child("color").setValue(params.color);
+        snapshot.child("type").setValue(params.hat);
+        snapshot.child("feather").setValue(params.drawthefeather);
 
     }
 
