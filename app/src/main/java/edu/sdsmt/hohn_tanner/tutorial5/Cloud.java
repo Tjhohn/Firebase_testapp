@@ -22,6 +22,9 @@ import java.util.ArrayList;
 
 public class Cloud {
 
+    private final static FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private static DatabaseReference hattingsList = database.getReference("hattings");
+
     /**
      * method to load a specific hatting
      * @param view The view we are loading the hatting into
@@ -30,15 +33,13 @@ public class Cloud {
      */
     public void loadFromCloud(final HatterView view, String catId, final Dialog dlg)
     {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("hattings").child(catId);
+        DatabaseReference myRef = hattingsList.child(catId);
 
         // Read from the database
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 view.loadJSON(dataSnapshot);
-
                 dlg.dismiss();
                 if (view.getContext() instanceof HatterActivity)
                     ((HatterActivity) view.getContext()).updateUI();
@@ -73,14 +74,9 @@ public class Cloud {
             view.post(() -> Toast.makeText(view.getContext(), R.string.save_fail, Toast.LENGTH_SHORT).show());;
         }
         else{
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference hattingsList = database.getReference("hattings");
-            String key =hattingsList .push().getKey();
-            hattingsList = hattingsList.child(key);
-            hattingsList.child("name").setValue(name);
-
-            view.saveJSON(hattingsList);
-            hattingsList.child("name").setValue(name, new DatabaseReference.CompletionListener() {
+            String key = hattingsList.push().getKey();
+            DatabaseReference newHat = hattingsList.child(key);
+            newHat.child("name").setValue(name, new DatabaseReference.CompletionListener() {
                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                     if(databaseError != null) {
                         // Error condition!
@@ -90,6 +86,7 @@ public class Cloud {
                         view.post(() -> Toast.makeText(view.getContext(), R.string.fail, Toast.LENGTH_SHORT).show());;
                     }
                 }});
+            view.saveJSON(hattingsList);
         }
 
     }
@@ -148,9 +145,8 @@ public class Cloud {
             final ArrayList<Item> newItems = new ArrayList<>();
 
             //connect to the database (hattings child)
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
             database.goOnline();
-            DatabaseReference myRef = database.getReference("hattings");
+            DatabaseReference myRef = hattingsList;
 
             // Read from the database
             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
