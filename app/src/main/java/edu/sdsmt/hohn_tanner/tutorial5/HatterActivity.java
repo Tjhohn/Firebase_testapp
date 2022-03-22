@@ -24,6 +24,28 @@ import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+//Tutorial 5 Grading
+//
+//        Complete the following checklist. If you partially completed an item, put a note how I can check what is working for partial credit.
+//
+//        Firebase login name: testing.hohn@gmail.com
+//        Firebase login password: zxcASDqwe!@#
+//
+//        done___	45 	T5: Tutorial completed
+//
+//        done___	10 	T5: Catalog item layout correct
+//
+//        done___	10 	T5: Function to get an item from the catalog adapter
+//
+//        done___	15 	T5: The Save to Cloud dialog box.
+//
+//        done___	5 	T5: Toast if name is empty
+//
+//        done(If I did correctly? I get an error but unsure if I am doing what your asking)___	10 	T5: Toast if server save fails (e.g. permission  denied which is how I'll be testing it)
+//
+//        ______	10 	T5 CSC 576 ONLY: overwrite a hatting name
+
+
 public class HatterActivity extends AppCompatActivity {
 
     /**

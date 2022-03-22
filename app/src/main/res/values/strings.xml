@@ -27,6 +27,7 @@
     <string name="name">Name</string>
     <string name="save">Save</string>
     <string name="fail">Operation Failed</string>
+    <string name="save_fail">Name field is empty</string>
 
     <string-array name="hats_spinner">
 

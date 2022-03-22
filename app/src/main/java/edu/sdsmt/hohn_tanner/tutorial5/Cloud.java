@@ -30,8 +30,6 @@ public class Cloud {
      */
     public void loadFromCloud(final HatterView view, String catId, final Dialog dlg)
     {
-
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("hattings").child(catId);
 
@@ -72,7 +70,7 @@ public class Cloud {
              */
             // Please fill this in...
             // Error condition!
-            view.post(() -> Toast.makeText(view.getContext(), R.string.fail, Toast.LENGTH_SHORT).show());;
+            view.post(() -> Toast.makeText(view.getContext(), R.string.save_fail, Toast.LENGTH_SHORT).show());;
         }
         else{
             FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -89,7 +87,7 @@ public class Cloud {
                         /*
                          * make a toast
                          */
-
+                        view.post(() -> Toast.makeText(view.getContext(), R.string.fail, Toast.LENGTH_SHORT).show());;
                     }
                 }});
         }
