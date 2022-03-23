@@ -315,6 +315,11 @@ public class HatterActivity extends AppCompatActivity {
                 saveDlg = new SaveDlg();
                 saveDlg.show(getSupportFragmentManager(), "save");
                 return true;
+
+            case R.id.menu_delete:
+                DeleteDlg dlg3 = new DeleteDlg();
+                dlg3.show(getSupportFragmentManager(), "delete");
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

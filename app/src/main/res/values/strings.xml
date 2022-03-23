@@ -28,6 +28,8 @@
     <string name="save">Save</string>
     <string name="fail">Operation Failed</string>
     <string name="save_fail">Name field is empty</string>
+    <string name="delete_sure">Are you sure you want to delete </string>
+    <string name="delete_title">Delete from cloud...</string>
 
     <string-array name="hats_spinner">
 
