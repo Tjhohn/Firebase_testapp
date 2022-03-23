@@ -221,35 +221,16 @@ public class HatterView extends View {
         /*
          * load in parameters
          */
-        params.imageUri = snapshot.child("uri").getValue().toString();
-        params.hatX = Float.parseFloat(snapshot.child("x").getValue().toString());
-        params.hatY = Float.parseFloat(snapshot.child("y").getValue().toString());
-        params.hatAngle = Float.parseFloat(snapshot.child("angle").getValue().toString());
-        params.hatScale = Float.parseFloat(snapshot.child("scale").getValue().toString());
-        params.color = Integer.parseInt(snapshot.child("color").getValue().toString());
-        params.hat = Integer.parseInt(snapshot.child("type").getValue().toString());
-        params.drawthefeather = (boolean) (snapshot.child("feather").getValue());
-
-        // Ensure the options are all set
+        params = snapshot.child("hatting").getValue(Parameters.class);
+        //ensure all options are set
         setColor(params.color);
         setImageUri(Uri.parse(params.imageUri));
         setHat(params.hat);
         setFeather(params.drawthefeather);
-
-
     }
 
     public void saveJSON(DatabaseReference snapshot) {
-
-        snapshot.child("uri").setValue(params.imageUri);
-        snapshot.child("x").setValue(params.hatX);
-        snapshot.child("y").setValue(params.hatY);
-        snapshot.child("angle").setValue(params.hatAngle);
-        snapshot.child("scale").setValue(params.hatScale);
-        snapshot.child("color").setValue(params.color);
-        snapshot.child("type").setValue(params.hat);
-        snapshot.child("feather").setValue(params.drawthefeather);
-
+        snapshot.child("hatting").setValue(params);
     }
 
     /**
