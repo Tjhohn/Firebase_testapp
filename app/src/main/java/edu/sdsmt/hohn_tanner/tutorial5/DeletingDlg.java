@@ -11,15 +11,23 @@ public class DeletingDlg extends DialogFragment implements CatalogCallback {
     public String getCatId() {
         return catId;
     }
+    public String getImageName(){return imageName; }
 
     public void setCatId(String catId) {
         this.catId = catId;
     }
+    public void setImageName(String name) {
+        this.imageName = name;
+    }
 
     /**
-     * Id for the image we are loading
+     * Id for the image we are removing
      */
     private String catId;
+    /**
+     * name for the image we are removing
+     */
+    private String imageName;
     private final static String ID = "id";
     private AlertDialog dlg;
 
@@ -36,6 +44,7 @@ public class DeletingDlg extends DialogFragment implements CatalogCallback {
 
         // Set the title
         builder.setTitle(R.string.delete_title);
+        builder.setMessage(getResources().getString(R.string.delete_sure) + " " + imageName+ "?");
 
         // Add a cancel button
         builder.setNegativeButton(android.R.string.cancel, (dialog, id) -> {

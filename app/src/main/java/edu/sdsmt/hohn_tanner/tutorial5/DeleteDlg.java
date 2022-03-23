@@ -19,6 +19,7 @@ public class DeleteDlg extends DialogFragment implements CatalogCallback{
     public void callback(Cloud.Item catItem) {
         DeletingDlg deletingDlg = new DeletingDlg();
         deletingDlg.setCatId(catItem.id);
+        deletingDlg.setImageName(catItem.name);
         deletingDlg.show(getParentFragmentManager(), "loading");
         this.dismiss();
     }
