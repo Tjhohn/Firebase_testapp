@@ -2,7 +2,6 @@ package edu.sdsmt.hohn_tanner.tutorial5;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;

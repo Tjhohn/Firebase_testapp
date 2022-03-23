@@ -27,6 +27,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/name"
+        tools:text="@string/name_field"
+        android:hint="@string/name_field"
         android:autofillHints="" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,9 +41,27 @@ import android.widget.Toast;
 //
 //        done___	5 	T5: Toast if name is empty
 //
-//        done(If I did correctly? I get an error toast but unsure if I am doing what your asking)___	10 	T5: Toast if server save fails (e.g. permission  denied which is how I'll be testing it)
+//        done(If I did correctly? I get an error toast)___	10 	T5: Toast if server save fails (e.g. permission  denied which is how I'll be testing it)
 //
-//        ______	10 	T5 CSC 576 ONLY: overwrite a hatting name
+//Step 6 Grading
+//
+//        Complete the following checklist. If you partially completed an item, put a note how I can check what is working for partial credit.
+//
+//        done___	40 	T6: Tutorial completed
+//
+//        done___  5 	T6: Can login in a new user and existing user
+//
+//        done___	10 	T6: getCatalog/load/save still work correctly with new tree structure
+//
+//        done(ive tested alot and believe so)___	10 	T6: hatting rules work properly
+//
+//        done___	10 	T6: Deletion Dialog
+//
+//        done___	10 	T6: Deletion works
+//
+//        done(i have a toast set but could not figure out how to cause error here)___	5 	T6: Deletion error caught
+//
+//       Total if the errors messages are correct is 200 points, but I am unsure again if errors are proper!!!
 
 
 public class HatterActivity extends AppCompatActivity {
