@@ -101,6 +101,36 @@ public class Cloud {
     }
 
     /**
+     * method to load a specific hatting
+     * @param catId the id of the hatting
+     * @param dlg the dialog box showing the loading state
+     */
+    public void removeFromCloud(final HatterView view, String catId, final Dialog dlg)
+    {
+        DatabaseReference myRef = hattingsList.child(catId);
+
+        // Read from the database
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                    snapshot.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Error condition!
+                view.post(() -> {
+                    Toast.makeText(view.getContext(), R.string.delete_fail, Toast.LENGTH_SHORT).show();
+                    dlg.dismiss();
+                });
+
+            }
+        });
+    }
+
+    /**
      * Nested class to store one catalog row underlying data
      */
     public static class Item {

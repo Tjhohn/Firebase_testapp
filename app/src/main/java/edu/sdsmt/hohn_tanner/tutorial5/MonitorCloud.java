@@ -19,14 +19,18 @@ public class MonitorCloud {
     public final static MonitorCloud INSTANCE = new MonitorCloud();
 
 
-    private static final String USER = "name";
-    private static final String EMAIL = "fake@email.com";
-    private static final String PASSWORD = "12345678";
-    private static final String TAG = "monitor";
+//    private static final String USER = "name";
+//    private static final String EMAIL = "fake@email.com";
+//    private static final String PASSWORD = "12345678";
+//    private static final String TAG = "monitor";
 //    private static final String USER = "darkLord";
 //    private static final String EMAIL = "moldyWart@email.com";
 //    private static final String PASSWORD = "12345678";
 //    private static final String TAG = "monitor";
+    private static final String USER = "test";
+    private static final String EMAIL = "test@email.com";
+    private static final String PASSWORD = "12345678";
+    private static final String TAG = "monitor";
 
     // Firebase instance variables
     private final FirebaseAuth userAuth = FirebaseAuth.getInstance();

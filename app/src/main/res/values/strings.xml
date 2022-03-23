@@ -30,6 +30,7 @@
     <string name="save_fail">Name field is empty</string>
     <string name="delete_sure">Are you sure you want to delete </string>
     <string name="delete_title">Delete from cloud...</string>
+    <string name="delete_fail">Delete operation failed</string>
 
     <string-array name="hats_spinner">
 
