@@ -59,9 +59,9 @@ import android.widget.Toast;
 //
 //        done___	10 	T6: Deletion works
 //
-//        done(i have a toast set but could not figure out how to cause error here)___	5 	T6: Deletion error caught
+//        done___	5 	T6: Deletion error caught
 //
-//       Total if the errors messages are correct is 200 points, but I am unsure again if errors are proper!!!
+//       Total 200 points (I believe)
 
 
 public class HatterActivity extends AppCompatActivity {

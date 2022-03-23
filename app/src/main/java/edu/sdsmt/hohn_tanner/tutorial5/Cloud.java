@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -109,23 +110,16 @@ public class Cloud {
     {
         DatabaseReference myRef = hattingsList.child(catId);
 
-        // Read from the database
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                    snapshot.getRef().removeValue();
-                }
-            }
 
+        myRef.removeValue(new DatabaseReference.CompletionListener() {
             @Override
-            public void onCancelled(DatabaseError error) {
-                // Error condition!
-                view.post(() -> {
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                if(error != null){
+                    view.post(() -> {
                     Toast.makeText(view.getContext(), R.string.delete_fail, Toast.LENGTH_SHORT).show();
                     dlg.dismiss();
-                });
-
+               });
+                }
             }
         });
     }
