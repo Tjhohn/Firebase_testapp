@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class Cloud {
 
     private final static FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private static DatabaseReference hattingsList = database.getReference("hattings");
+    private static DatabaseReference hattingsList = database.getReference("hattings").child(MonitorCloud.INSTANCE.getUserUid());
 
     /**
      * method to load a specific hatting
@@ -76,17 +76,13 @@ public class Cloud {
         else{
             String key = hattingsList.push().getKey();
             DatabaseReference newHat = hattingsList.child(key);
+            view.saveJSON(newHat);
             newHat.child("name").setValue(name, new DatabaseReference.CompletionListener() {
                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                     if(databaseError != null) {
-                        // Error condition!
-                        /*
-                         * make a toast
-                         */
                         view.post(() -> Toast.makeText(view.getContext(), R.string.fail, Toast.LENGTH_SHORT).show());;
                     }
                 }});
-            view.saveJSON(hattingsList);
         }
 
     }

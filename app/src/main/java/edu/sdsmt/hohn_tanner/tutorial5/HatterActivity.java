@@ -41,7 +41,7 @@ import android.widget.Toast;
 //
 //        done___	5 	T5: Toast if name is empty
 //
-//        done(If I did correctly? I get an error but unsure if I am doing what your asking)___	10 	T5: Toast if server save fails (e.g. permission  denied which is how I'll be testing it)
+//        done(If I did correctly? I get an error toast but unsure if I am doing what your asking)___	10 	T5: Toast if server save fails (e.g. permission  denied which is how I'll be testing it)
 //
 //        ______	10 	T5 CSC 576 ONLY: overwrite a hatting name
 
@@ -95,6 +95,7 @@ public class HatterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final MonitorCloud monitor = MonitorCloud.INSTANCE;
         setContentView(R.layout.activity_hatter);
 
         /*
